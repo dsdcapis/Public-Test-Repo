@@ -383,7 +383,7 @@ ENDHEAD
                 formId: 'dcd7e162-7c2b-457c-a40e-1c6e65c1edea',
                 target: '#hubspot-form-container',
                 onFormReady: function($form) {
-                    var hiddenField = $form[0].querySelector('input[name="downloaded_files"]');
+                    var hiddenField = $form[0].querySelector('input[name="dsdc_apis_downloaded"]');
                     if (hiddenField) hiddenField.value = fileList;
                 },
                 onFormSubmitted: function() {
