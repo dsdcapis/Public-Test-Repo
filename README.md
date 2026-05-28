@@ -26,7 +26,7 @@ The [api-specs](./api-specs) folder contains OpenAPI specification files for the
 
 ## Read the Specs
 
-To read the specs, visit [github.com/dsdcapis/Public-Test-Repo](https://github.com/dsdcapis/Public-Test-Repo).
+To read the specs, visit [dsdcapis.github.io/Public-Test-Repo](https://dsdcapis.github.io/Public-Test-Repo/).
 
 ## Participation
 
