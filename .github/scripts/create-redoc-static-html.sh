@@ -382,9 +382,13 @@ ENDHEAD
                 portalId: '22203423',
                 formId: 'dcd7e162-7c2b-457c-a40e-1c6e65c1edea',
                 target: '#hubspot-form-container',
-                onFormReady: function($form) {
+                onFormSubmit: function($form) {
                     var hiddenField = $form[0].querySelector('input[name="dsdc_apis_downloaded"]');
-                    if (hiddenField) hiddenField.value = fileList;
+                    if (hiddenField) {
+                        hiddenField.value = fileList;
+                        hiddenField.dispatchEvent(new Event('change', { bubbles: true }));
+                        hiddenField.dispatchEvent(new Event('input', { bubbles: true }));
+                    }
                 },
                 onFormSubmitted: function() {
                     closeDownloadModal();
