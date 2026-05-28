@@ -26,7 +26,7 @@ The [api-specs](./api-specs) folder contains OpenAPI specification files for the
 
 ## Read the Specs
 
-To read the specs, visit [dsdcapis.github.io/less-than-truckload](https://dsdcapis.github.io/less-than-truckload/).
+To read the specs, visit [github.com/dsdcapis/Public-Test-Repo](https://github.com/dsdcapis/Public-Test-Repo).
 
 ## Participation
 
