@@ -42,7 +42,7 @@ generateHighLevelIndex() {
 <html>
 <head>
     <meta charset=\"UTF-8\">
-    <title>Less Than Truckload API Documentation</title>
+    <title>LTL API Documentation - Test</title>
 </head>
 <style>
    body {
@@ -129,7 +129,7 @@ generateHighLevelIndex() {
 <body>
     <img class=\"logo\" src=\"images/DSDC-LTL.svg\" alt=\"Company Logo\">
     <p>Supported by the Digital Standard Development Council's (DSDC) Digital LTL Council, these API standards help organizations modernize LTL workflows through standardized, open, and scalable integration.</p>
-    <h1>Less Than Truckload API Documentation</h1>
+    <h1>LTL API Documentation - Test</h1>
     <ul class=\"tree\" id=\"root\">" > "$indexFile"
 
     # Sort all paths for processing
