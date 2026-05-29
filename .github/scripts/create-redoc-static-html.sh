@@ -252,32 +252,14 @@ generateHighLevelIndex() {
         }
         .modal-close:hover { color: #ffffff; }
 
-        /* HubSpot form overrides */
-        .modal-box .hs-form-private label,
-        .modal-box .hs-form label {
-            color: #ffffff !important;
-            font-family: 'Nunito Sans', Arial, sans-serif !important;
-            font-size: 14px !important;
+        /* HubSpot form — light background */
+        #hubspot-form-container {
+            background: #ffffff;
+            padding: 20px;
+            margin-top: 8px;
         }
-        .modal-box .hs-form-private input[type="text"],
-        .modal-box .hs-form-private input[type="email"],
-        .modal-box .hs-form-private select,
-        .modal-box .hs-form input[type="text"],
-        .modal-box .hs-form input[type="email"],
-        .modal-box .hs-form select {
-            background: rgba(255,255,255,0.08) !important;
-            border: 1px solid rgba(255,255,255,0.2) !important;
-            color: #ffffff !important;
-            font-family: 'Nunito Sans', Arial, sans-serif !important;
-            width: 100% !important;
-            padding: 8px 10px !important;
-        }
-        .modal-box .hs-form-private input::placeholder,
-        .modal-box .hs-form input::placeholder {
-            color: #B4B4B4 !important;
-        }
-        .modal-box .hs-form-private .hs-button,
-        .modal-box .hs-form .hs-button {
+        #hubspot-form-container .hs-form-private .hs-button,
+        #hubspot-form-container .hs-form .hs-button {
             background-color: #592E82 !important;
             color: #ffffff !important;
             border: none !important;
@@ -290,14 +272,9 @@ generateHighLevelIndex() {
             transition: background-color 0.3s ease !important;
             letter-spacing: 0.5px !important;
         }
-        .modal-box .hs-form-private .hs-button:hover,
-        .modal-box .hs-form .hs-button:hover {
+        #hubspot-form-container .hs-form-private .hs-button:hover,
+        #hubspot-form-container .hs-form .hs-button:hover {
             background-color: #999999 !important;
-        }
-        .modal-box .hs-error-msgs,
-        .modal-box .hs_error_rollup {
-            color: #ff6b6b !important;
-            font-size: 13px !important;
         }
 
         /* Toast */
