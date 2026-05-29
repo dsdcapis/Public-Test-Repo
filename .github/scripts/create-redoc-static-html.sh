@@ -41,173 +41,317 @@ generateHighLevelIndex() {
 
     cat > "$indexFile" << 'ENDHEAD'
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LTL API Documentation - Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: 'Nunito Sans', Arial, sans-serif;
+            background-color: #151515;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 100px;
+            font-size: 16px;
+            line-height: 26px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            background-color: #151515;
+            border-bottom: 3px solid #592E82;
+            padding: 16px 0;
+            margin-bottom: 48px;
+        }
+        img.logo {
+            max-height: 80px;
+            display: block;
+        }
+
+        /* Typography */
+        .section-label {
+            font-family: 'Jost', Arial, sans-serif;
+            font-weight: 600;
+            color: #592E82;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin: 0 0 10px 0;
+        }
+        h1 {
+            font-family: 'Jost', Arial, sans-serif;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 38px;
+            margin: 0 0 16px 0;
+            line-height: 1.2;
+        }
+        .intro {
+            max-width: 720px;
+            line-height: 1.7;
+            color: #B4B4B4;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        .files-heading {
+            font-family: 'Jost', Arial, sans-serif;
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 18px;
+            margin: 0 0 16px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Tree */
+        .tree {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .tree ul {
+            list-style-type: none;
+            padding-left: 20px;
+            margin: 0;
+        }
+        .tree li {
+            margin: 6px 0;
+            position: relative;
+        }
+        .folder {
+            font-family: 'Jost', Arial, sans-serif;
+            font-weight: 600;
+            color: #ffffff;
+            cursor: pointer;
+            user-select: none;
+            font-size: 15px;
+        }
+        .folder::before {
+            content: '📁 ';
+            margin-right: 4px;
+        }
+        .folder.collapsed::before {
+            content: '📂 ';
+        }
+        .file-link {
+            text-decoration: none;
+            padding: 2px 6px;
+            font-size: 14px;
+            font-family: 'Nunito Sans', Arial, sans-serif;
+            transition: background-color 0.2s;
+        }
+        .file-link:hover {
+            background-color: rgba(89, 46, 130, 0.25);
+        }
+        .pdf-link { color: #ff6b6b; }
+        .pdf-link::before { content: '📄 '; margin-right: 4px; }
+        .xlsx-link { color: #5cb85c; }
+        .xlsx-link::before { content: '📊 '; margin-right: 4px; }
+        .openapi-link { color: #5bc0de; }
+        .openapi-link::before { content: '📋 '; margin-right: 4px; }
+
+        .toggle {
+            display: inline-block;
+            width: 16px;
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+            margin-right: 3px;
+            color: #B4B4B4;
+            font-size: 12px;
+        }
+        .hidden { display: none; }
+
+        /* Checkbox */
+        .download-checkbox {
+            margin-right: 6px;
+            cursor: pointer;
+            width: 14px;
+            height: 14px;
+            vertical-align: middle;
+            accent-color: #592E82;
+        }
+
+        /* Download button */
+        #download-btn {
+            display: none;
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background-color: #592E82;
+            color: #ffffff;
+            border: none;
+            padding: 13px 28px;
+            border-radius: 0;
+            font-family: 'Nunito Sans', Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0px 3px 16px 0px rgba(0,0,0,0.4);
+            z-index: 100;
+            transition: background-color 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+        #download-btn:hover { background-color: #999999; }
+
+        /* Modal */
+        #download-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-box {
+            background: #1e1e1e;
+            border-top: 4px solid #592E82;
+            padding: 36px;
+            max-width: 520px;
+            width: 90%;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.6);
+        }
+        .modal-box h2 {
+            font-family: 'Jost', Arial, sans-serif;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0 0 20px 0;
+            font-size: 20px;
+        }
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #B4B4B4;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+        .modal-close:hover { color: #ffffff; }
+
+        /* HubSpot form overrides */
+        .modal-box .hs-form-private label,
+        .modal-box .hs-form label {
+            color: #ffffff !important;
+            font-family: 'Nunito Sans', Arial, sans-serif !important;
+            font-size: 14px !important;
+        }
+        .modal-box .hs-form-private input[type="text"],
+        .modal-box .hs-form-private input[type="email"],
+        .modal-box .hs-form-private select,
+        .modal-box .hs-form input[type="text"],
+        .modal-box .hs-form input[type="email"],
+        .modal-box .hs-form select {
+            background: rgba(255,255,255,0.08) !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+            color: #ffffff !important;
+            font-family: 'Nunito Sans', Arial, sans-serif !important;
+            width: 100% !important;
+            padding: 8px 10px !important;
+        }
+        .modal-box .hs-form-private input::placeholder,
+        .modal-box .hs-form input::placeholder {
+            color: #B4B4B4 !important;
+        }
+        .modal-box .hs-form-private .hs-button,
+        .modal-box .hs-form .hs-button {
+            background-color: #592E82 !important;
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: 0 !important;
+            font-family: 'Nunito Sans', Arial, sans-serif !important;
+            font-weight: 700 !important;
+            font-size: 15px !important;
+            padding: 12px 28px !important;
+            cursor: pointer !important;
+            transition: background-color 0.3s ease !important;
+            letter-spacing: 0.5px !important;
+        }
+        .modal-box .hs-form-private .hs-button:hover,
+        .modal-box .hs-form .hs-button:hover {
+            background-color: #999999 !important;
+        }
+        .modal-box .hs-error-msgs,
+        .modal-box .hs_error_rollup {
+            color: #ff6b6b !important;
+            font-size: 13px !important;
+        }
+
+        /* Toast */
+        #download-toast {
+            display: none;
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #592E82;
+            color: #ffffff;
+            padding: 13px 28px;
+            font-family: 'Nunito Sans', Arial, sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            z-index: 300;
+            box-shadow: 0px 3px 16px 0px rgba(0,0,0,0.4);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #151515;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 32px 0;
+            margin-top: 60px;
+        }
+        footer p {
+            color: #B4B4B4;
+            font-size: 13px;
+            margin: 4px 0;
+            line-height: 1.6;
+        }
+        footer a {
+            color: #592E82;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        footer a:hover { color: #ffffff; }
+    </style>
 </head>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-        padding-bottom: 80px;
-    }
-    p {
-        max-width: 720px;
-        line-height: 1.6;
-    }
-    img.logo {
-        max-height: 100px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    .tree {
-        list-style-type: none;
-        padding-left: 0;
-    }
-    .tree ul {
-        list-style-type: none;
-        padding-left: 20px;
-        margin: 0;
-    }
-    .tree li {
-        margin: 3px 0;
-        position: relative;
-    }
-    .folder {
-        font-weight: bold;
-        color: #333;
-        cursor: pointer;
-        user-select: none;
-    }
-    .folder::before {
-        content: '📁 ';
-        margin-right: 5px;
-    }
-    .folder.collapsed::before {
-        content: '📂 ';
-    }
-    .file-link {
-        text-decoration: none;
-        padding: 2px 4px;
-        border-radius: 3px;
-        transition: background-color 0.2s;
-    }
-    .file-link:hover {
-        background-color: #f0f0f0;
-    }
-    .pdf-link {
-        color: #d9534f;
-    }
-    .pdf-link::before {
-        content: '📄 ';
-        margin-right: 5px;
-    }
-    .xlsx-link {
-        color: #5cb85c;
-    }
-    .xlsx-link::before {
-        content: '📊 ';
-        margin-right: 5px;
-    }
-    .openapi-link {
-        color: #5bc0de;
-    }
-    .openapi-link::before {
-        content: '📋 ';
-        margin-right: 5px;
-    }
-    .toggle {
-        display: inline-block;
-        width: 16px;
-        text-align: center;
-        cursor: pointer;
-        user-select: none;
-        margin-right: 3px;
-    }
-    .hidden {
-        display: none;
-    }
-    .download-checkbox {
-        margin-right: 6px;
-        cursor: pointer;
-        width: 14px;
-        height: 14px;
-        vertical-align: middle;
-    }
-    #download-btn {
-        display: none;
-        position: fixed;
-        bottom: 24px;
-        right: 24px;
-        background-color: #337ab7;
-        color: white;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 6px;
-        font-size: 15px;
-        cursor: pointer;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        z-index: 100;
-    }
-    #download-btn:hover {
-        background-color: #286090;
-    }
-    #download-modal {
-        display: none;
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(0,0,0,0.5);
-        z-index: 200;
-        align-items: center;
-        justify-content: center;
-    }
-    .modal-box {
-        background: white;
-        border-radius: 8px;
-        padding: 30px;
-        max-width: 520px;
-        width: 90%;
-        position: relative;
-        max-height: 90vh;
-        overflow-y: auto;
-    }
-    .modal-box h2 {
-        margin-top: 0;
-        font-size: 18px;
-    }
-    .modal-close {
-        position: absolute;
-        top: 12px;
-        right: 16px;
-        background: none;
-        border: none;
-        font-size: 20px;
-        cursor: pointer;
-        color: #666;
-    }
-    #download-toast {
-        display: none;
-        position: fixed;
-        bottom: 24px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #5cb85c;
-        color: white;
-        padding: 12px 24px;
-        border-radius: 6px;
-        font-size: 14px;
-        z-index: 300;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-</style>
 <body>
-    <img class="logo" src="images/DSDC-LTL.svg" alt="Company Logo">
-    <p>Supported by the Digital Standard Development Council's (DSDC) Digital LTL Council, these API standards help organizations modernize LTL workflows through standardized, open, and scalable integration.</p>
-    <h1>LTL API Documentation - Test</h1>
-    <ul class="tree" id="root">
+    <header>
+        <div class="container">
+            <img class="logo" src="images/DSDC-LTL.svg" alt="DSDC Digital LTL Council">
+        </div>
+    </header>
+    <div class="container">
+        <p class="section-label">DSDC Digital LTL Council</p>
+        <h1>LTL API Documentation - Test</h1>
+        <p class="intro">Supported by the Digital Standard Development Council's (DSDC) Digital LTL Council, these API standards help organizations modernize LTL workflows through standardized, open, and scalable integration.</p>
+        <p class="files-heading">Available Files</p>
+        <ul class="tree" id="root">
 ENDHEAD
 
     # Sort all paths for processing
@@ -324,7 +468,15 @@ ENDHEAD
     printTree "" "        "
 
     cat >> "$indexFile" << 'ENDSCRIPT'
-    </ul>
+        </ul>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Copyright &copy; National Motor Freight Traffic Association, Inc. 2024. All Rights Reserved</p>
+            <p><a href="mailto:dsdc@nmfta.org">dsdc@nmfta.org</a> &nbsp;|&nbsp; (866) 411-6632</p>
+        </div>
+    </footer>
 
     <button id="download-btn" onclick="openDownloadModal()">
         Download Selected (<span id="download-count">0</span>)
@@ -386,6 +538,11 @@ ENDHEAD
                 portalId: '22203423',
                 formId: 'dcd7e162-7c2b-457c-a40e-1c6e65c1edea',
                 target: '#hubspot-form-container',
+                onFormReady: function($form) {
+                    $form.find('input[name="dsdc_apis_downloaded"]')
+                        .val(fileList)
+                        .change();
+                },
                 onFormSubmitted: function() {
                     closeDownloadModal();
                     downloadAsZip(filesToDownload);
