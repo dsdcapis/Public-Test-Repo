@@ -223,11 +223,11 @@ generateHighLevelIndex() {
         .modal-box {
             background: #1e1e1e;
             border-top: 4px solid #592E82;
-            padding: 36px;
-            max-width: 520px;
+            padding: 20px 24px 24px;
+            max-width: 560px;
             width: 90%;
             position: relative;
-            max-height: 90vh;
+            max-height: 96vh;
             overflow-y: auto;
             box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.6);
         }
@@ -235,8 +235,8 @@ generateHighLevelIndex() {
             font-family: 'Jost', Arial, sans-serif;
             font-weight: 700;
             color: #ffffff;
-            margin: 0 0 20px 0;
-            font-size: 20px;
+            margin: 0 0 12px 0;
+            font-size: 17px;
         }
         .modal-close {
             position: absolute;
@@ -252,11 +252,30 @@ generateHighLevelIndex() {
         }
         .modal-close:hover { color: #ffffff; }
 
-        /* HubSpot form — light background */
+        /* HubSpot form — light background, compact layout */
         #hubspot-form-container {
             background: #ffffff;
-            padding: 20px;
-            margin-top: 8px;
+            padding: 16px;
+            margin-top: 4px;
+        }
+        #hubspot-form-container .hs-form-field {
+            margin-bottom: 10px !important;
+        }
+        #hubspot-form-container .hs-form-field label {
+            font-size: 13px !important;
+            margin-bottom: 3px !important;
+            display: block !important;
+        }
+        #hubspot-form-container .hs-form-field input[type="text"],
+        #hubspot-form-container .hs-form-field input[type="email"] {
+            padding: 6px 8px !important;
+            font-size: 13px !important;
+            height: auto !important;
+            width: 100% !important;
+        }
+        #hubspot-form-container .hs-error-msgs {
+            font-size: 12px !important;
+            margin: 2px 0 0 0 !important;
         }
         #hubspot-form-container .hs-form-private .hs-button,
         #hubspot-form-container .hs-form .hs-button {
@@ -266,8 +285,9 @@ generateHighLevelIndex() {
             border-radius: 0 !important;
             font-family: 'Nunito Sans', Arial, sans-serif !important;
             font-weight: 700 !important;
-            font-size: 15px !important;
-            padding: 12px 28px !important;
+            font-size: 14px !important;
+            padding: 10px 24px !important;
+            margin-top: 6px !important;
             cursor: pointer !important;
             transition: background-color 0.3s ease !important;
             letter-spacing: 0.5px !important;
