@@ -383,9 +383,16 @@ ENDHEAD
                 formId: 'dcd7e162-7c2b-457c-a40e-1c6e65c1edea',
                 target: '#hubspot-form-container',
                 onFormReady: function($form) {
-                    $form.find('input[name="dsdc_apis_downloaded"]')
-                        .val(fileList)
-                        .change();
+                    setTimeout(function() {
+                        var field = document.getElementsByName('dsdc_apis_downloaded')[0];
+                        if (field) {
+                            field.value = fileList;
+                            field.dispatchEvent(new Event('change', { bubbles: true }));
+                            field.dispatchEvent(new Event('input', { bubbles: true }));
+                            field.focus();
+                            field.blur();
+                        }
+                    }, 1000);
                 },
                 onFormSubmitted: function() {
                     closeDownloadModal();
