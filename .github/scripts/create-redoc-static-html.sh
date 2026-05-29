@@ -375,6 +375,10 @@ ENDHEAD
                 return f.name.split('/').pop();
             }).join(', ');
 
+            var pageUrl = new URL(window.location.href);
+            pageUrl.searchParams.set('dsdc_apis_downloaded', fileList);
+            window.history.replaceState({}, '', pageUrl);
+
             var container = document.getElementById('hubspot-form-container');
             container.innerHTML = '';
 
@@ -382,18 +386,6 @@ ENDHEAD
                 portalId: '22203423',
                 formId: 'dcd7e162-7c2b-457c-a40e-1c6e65c1edea',
                 target: '#hubspot-form-container',
-                onFormReady: function($form) {
-                    setTimeout(function() {
-                        var field = document.getElementsByName('dsdc_apis_downloaded')[0];
-                        if (field) {
-                            field.value = fileList;
-                            field.dispatchEvent(new Event('change', { bubbles: true }));
-                            field.dispatchEvent(new Event('input', { bubbles: true }));
-                            field.focus();
-                            field.blur();
-                        }
-                    }, 1000);
-                },
                 onFormSubmitted: function() {
                     closeDownloadModal();
                     downloadAsZip(filesToDownload);
@@ -428,6 +420,9 @@ ENDHEAD
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
+            var cleanUrl = new URL(window.location.href);
+            cleanUrl.searchParams.delete('dsdc_apis_downloaded');
+            window.history.replaceState({}, '', cleanUrl);
             showToast();
         }
 
