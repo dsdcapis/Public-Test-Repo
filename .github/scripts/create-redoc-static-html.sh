@@ -340,13 +340,13 @@ generateHighLevelIndex() {
 <body>
     <header>
         <div class="container">
-            <img class="logo" src="images/DSDC-LTL.svg" alt="DSDC Digital LTL Council">
+            <img class="logo" src="images/DSDC-LTLHigh-Res-R.png" alt="DSDC LTL">
         </div>
     </header>
     <div class="container">
         <p class="section-label">DSDC Digital LTL Council</p>
         <h1>LTL API Documentation - Test</h1>
-        <p class="intro">Supported by the Digital Standard Development Council's (DSDC) Digital LTL Council, these API standards help organizations modernize LTL workflows through standardized, open, and scalable integration.</p>
+        <p class="intro">Supported by the Digital Standards Development Council&reg; (DSDC)&reg;'s Digital LTL Council, these API standards help organizations modernize LTL workflows through standardized, open, and scalable integration.</p>
         <p class="files-heading">Available Files</p>
         <ul class="tree" id="root">
 ENDHEAD
@@ -470,7 +470,7 @@ ENDHEAD
 
     <footer>
         <div class="container">
-            <p>Copyright &copy; National Motor Freight Traffic Association, Inc. 2024. All Rights Reserved</p>
+            <p>Copyright &copy; National Motor Freight Traffic Association, Inc.&reg; (NMFTA)&reg; 2024. All Rights Reserved</p>
             <p><a href="mailto:dsdc@nmfta.org">dsdc@nmfta.org</a> &nbsp;|&nbsp; (866) 411-6632</p>
         </div>
     </footer>
@@ -642,7 +642,7 @@ ENDSCRIPT
 copyImages() {
     echo "Copying images..."
     mkdir -p "$publicFolder/images"
-    cp "$currentFolder/images/DSDC-LTL.svg" "$publicFolder/images/"
+    cp "$currentFolder/images/DSDC-LTLHigh-Res-R.png" "$publicFolder/images/"
 }
 
 mainProcess() {
