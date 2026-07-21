@@ -49,7 +49,7 @@ generateHighLevelIndex() {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" integrity="sha512-XMVd28F1oH/O71fzwBnV7HucLxVwtxf26XV8P4wPk26EDxuGZ91N8bsOttmnomcCD3CS5ZMRL50H0GgOHvegtg==" crossorigin="anonymous"></script>
     <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
     <style>
         *, *::before, *::after { box-sizing: border-box; }
@@ -89,7 +89,7 @@ generateHighLevelIndex() {
         .section-label {
             font-family: 'Jost', Arial, sans-serif;
             font-weight: 600;
-            color: #592E82;
+            color: #C4A0E0;
             font-size: 12px;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -208,7 +208,7 @@ generateHighLevelIndex() {
             transition: background-color 0.3s ease;
             letter-spacing: 0.5px;
         }
-        #download-btn:hover { background-color: #999999; }
+        #download-btn:hover { background-color: #3A1D57; }
 
         /* Modal */
         #download-modal {
@@ -294,7 +294,7 @@ generateHighLevelIndex() {
         }
         #hubspot-form-container .hs-form-private .hs-button:hover,
         #hubspot-form-container .hs-form .hs-button:hover {
-            background-color: #999999 !important;
+            background-color: #3A1D57 !important;
         }
 
         /* Toast */
@@ -330,7 +330,7 @@ generateHighLevelIndex() {
             line-height: 1.6;
         }
         footer a {
-            color: #592E82;
+            color: #C4A0E0;
             text-decoration: none;
             transition: color 0.2s;
         }
@@ -446,18 +446,18 @@ ENDHEAD
                 if [[ -f "$publicFolder/$item/index.html" ]]; then
                     IFS='/' read -ra parts <<< "$item"
                     local fileName="${parts[-1]}"
-                    echo "${indent}<li><input type=\"checkbox\" class=\"download-checkbox\" data-file=\"${item}/openapi-combined.yaml\" data-name=\"${item}/openapi-combined.yaml\" onchange=\"updateSelection()\"><a class=\"file-link openapi-link\" href=\"$item/index.html\">$fileName (OpenAPI)</a></li>" >> "$indexFile"
+                    echo "${indent}<li><input type=\"checkbox\" class=\"download-checkbox\" aria-label=\"Select $fileName (OpenAPI) for download\" data-file=\"${item}/openapi-combined.yaml\" data-name=\"${item}/openapi-combined.yaml\" onchange=\"updateSelection()\"><a class=\"file-link openapi-link\" href=\"$item/index.html\">$fileName (OpenAPI)</a></li>" >> "$indexFile"
                 fi
 
             elif [[ "$nodeType" == "pdf" ]]; then
                 IFS='/' read -ra parts <<< "$item"
                 local fileName="${parts[-1]}"
-                echo "${indent}<li><input type=\"checkbox\" class=\"download-checkbox\" data-file=\"$item\" data-name=\"$item\" onchange=\"updateSelection()\"><a class=\"file-link pdf-link\" href=\"$item\" onclick=\"handleDownloadClick(event); return false;\">$fileName</a></li>" >> "$indexFile"
+                echo "${indent}<li><input type=\"checkbox\" class=\"download-checkbox\" aria-label=\"Select $fileName for download\" data-file=\"$item\" data-name=\"$item\" onchange=\"updateSelection()\"><a class=\"file-link pdf-link\" href=\"$item\" onclick=\"handleDownloadClick(event); return false;\">$fileName</a></li>" >> "$indexFile"
 
             elif [[ "$nodeType" == "xlsx" ]]; then
                 IFS='/' read -ra parts <<< "$item"
                 local fileName="${parts[-1]}"
-                echo "${indent}<li><input type=\"checkbox\" class=\"download-checkbox\" data-file=\"$item\" data-name=\"$item\" onchange=\"updateSelection()\"><a class=\"file-link xlsx-link\" href=\"$item\" onclick=\"handleDownloadClick(event); return false;\">$fileName</a></li>" >> "$indexFile"
+                echo "${indent}<li><input type=\"checkbox\" class=\"download-checkbox\" aria-label=\"Select $fileName for download\" data-file=\"$item\" data-name=\"$item\" onchange=\"updateSelection()\"><a class=\"file-link xlsx-link\" href=\"$item\" onclick=\"handleDownloadClick(event); return false;\">$fileName</a></li>" >> "$indexFile"
             fi
         done
     }
@@ -480,9 +480,9 @@ ENDHEAD
     </button>
 
     <div id="download-modal">
-        <div class="modal-box">
+        <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
             <button class="modal-close" onclick="closeDownloadModal()">&#x2715;</button>
-            <h2>Please fill out the form to download</h2>
+            <h2 id="modal-title">Please fill out the form to download</h2>
             <div id="hubspot-form-container"></div>
         </div>
     </div>
@@ -491,6 +491,7 @@ ENDHEAD
 
     <script>
         var selectedFiles = [];
+        var _modalTrigger = null;
 
         function updateSelection() {
             selectedFiles = [];
@@ -515,7 +516,7 @@ ENDHEAD
         function openDownloadModal() {
             if (selectedFiles.length === 0) return;
             if (typeof hbspt === 'undefined') {
-                alert('Form is loading, please try again in a moment.');
+                showToast('Form is loading, please try again in a moment.');
                 return;
             }
 
@@ -542,7 +543,9 @@ ENDHEAD
                 },
                 onFormSubmitted: function() {
                     closeDownloadModal();
-                    downloadAsZip(filesToDownload);
+                    downloadAsZip(filesToDownload).catch(function(err) {
+                        showToast('Download failed: ' + err.message);
+                    });
                     document.querySelectorAll('.download-checkbox:checked').forEach(function(cb) {
                         cb.checked = false;
                     });
@@ -550,18 +553,26 @@ ENDHEAD
                 }
             });
 
-            document.getElementById('download-modal').style.display = 'flex';
+            var _modal = document.getElementById('download-modal');
+            _modal.style.display = 'flex';
+            _modalTrigger = document.activeElement;
+            var firstFocusable = _modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (firstFocusable) firstFocusable.focus();
         }
 
         function closeDownloadModal() {
             document.getElementById('download-modal').style.display = 'none';
+            if (_modalTrigger) { _modalTrigger.focus(); _modalTrigger = null; }
         }
 
         async function downloadAsZip(files) {
             var zip = new JSZip();
             var fetchPromises = files.map(function(file) {
                 return fetch(file.path)
-                    .then(function(r) { return r.blob(); })
+                    .then(function(r) {
+                        if (!r.ok) throw new Error('Failed to fetch ' + file.name + ' (' + r.status + ')');
+                        return r.blob();
+                    })
                     .then(function(blob) { zip.file(file.name, blob); });
             });
             await Promise.all(fetchPromises);
@@ -580,8 +591,9 @@ ENDHEAD
             showToast();
         }
 
-        function showToast() {
+        function showToast(message) {
             var toast = document.getElementById('download-toast');
+            toast.textContent = message || '✓ Download complete';
             toast.style.display = 'block';
             setTimeout(function() { toast.style.display = 'none'; }, 3000);
         }
@@ -594,6 +606,21 @@ ENDHEAD
                 toggle.textContent = ul.classList.contains('hidden') ? '▶' : '▼';
             }
         }
+
+        document.addEventListener('keydown', function(e) {
+            var modal = document.getElementById('download-modal');
+            if (modal.style.display === 'flex') {
+                if (e.key === 'Escape') { closeDownloadModal(); return; }
+                if (e.key === 'Tab') {
+                    var focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                    var first = focusable[0], last = focusable[focusable.length - 1];
+                    if (e.shiftKey ? document.activeElement === first : document.activeElement === last) {
+                        e.preventDefault();
+                        (e.shiftKey ? last : first).focus();
+                    }
+                }
+            }
+        });
 
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.folder').forEach(function(folder) {
