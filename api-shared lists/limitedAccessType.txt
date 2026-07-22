@@ -1,0 +1,123 @@
+openapi: 3.1.0
+info:
+  title: limitedAccessType
+  description: |
+    list of valid limited access types
+  version: "1.0.0"
+  creation date: 2026-07-20
+  update date:
+  contact: 
+    name: NMFTA Digital LTL Council
+    email: support@nmfta.org
+  license:
+    name: NMFTA License
+    url: https://github.com/dsdcapis/less-than-truckload/blob/main/LICENSE.md
+
+    LimitedAccessTypes:
+      type: string
+      description: |
+        
+        Valid Values:
+          <pre>
+          * Airport
+          * Airport-3 - Airport Cargo
+          * Church
+          * Church-55 - Place of Worship
+          * Club
+          * Club-21 - Country Club / Golf Course
+          * Club-60 - Private Club
+          * Construction
+          * Construction-17 - Construction Site
+          * Fair
+          * Fair-27 - Fairgrounds
+          * Farm
+          * Farm-30 - Fruit Orchard
+          * Farm-62 - Pumpkin Patch / Vegetable Patch
+          * Farm-87 - Winery
+          * Hotel
+          * Hotel-14 - Casino
+          * Hotel-35 - Hotel
+          * Hotel-41 - Lodging
+          * Hotel-47 - Motel / Inn
+          * Hotel-54 - Parking Lot / Garage
+          * Hotel-65 - Resort
+          * Hotel-66 - Restaurant / Bar
+          * Mine
+          * Mine-46 - Mine / Quarry
+          * Other
+          * Other-6 - Book Store
+          * Other-7 - Bowling Alley
+          * Other-8 - Brewery
+          * Other-9 - Business Park
+          * Other-12 - Car Rental
+          * Other-13 - Car Wash
+          * Other-19 - Convenience Store
+          * Other-23 - Daycare
+          * Other-24 - Dealership
+          * Other-25 - Distillery
+          * Other-26 - Factory Outlet
+          * Other-28 - Fast Food
+          * Other-31 - Funeral Home
+          * Other-33 - Gym / Fitness Center
+          * Other-38 - Laundry / Dry Cleaner
+          * Other-40 - Liquor Store
+          * Other-42 - Mall
+          * Other-48 - Native American Reservation
+          * Other-52 - Other
+          * Other-67 - Retail Store
+          * Other-68 - Salon / Barber
+          * Other-72 - Shopping Center
+          * Other-75 - Specialty Food Store
+          * Other-78 - Theater
+          * Other-80 - Truck Stop
+          * Other-83 - Vet / Kennel
+          * Park
+          * Park-4 - Amusement Park
+          * Park-5 - Aquarium
+          * Park-10 - Camp
+          * Park-11 - Campground / RV Park
+          * Park-15 - Cemetery
+          * Park-53 - Park
+          * Park-64 - Recreational
+          * Park-73 - Ski Resort
+          * Park-76 - Sports Venue
+          * Park-77 - State / National Park
+          * Park-88 - Zoo
+          * Port
+          * Port-22 - Cruise Line Terminal
+          * Port-29 - Ferry
+          * Port-43 - Marina
+          * Port-57 - Port
+          * School
+          * School-34 - Hospital
+          * School-36 - Junior College
+          * School-39 - Library / Museum
+          * School-44 - Medical Facility
+          * School-50 - Nursing Home / Assisted Living
+          * School-56 - Police / Fire / Rescue
+          * School-61 - Public Transit Station
+          * School-69 - School
+          * School-70 - School District Office
+          * School-79 - Trade School
+          * School-81 - University / College
+          * Secure
+          * Secure-32 - Government Site
+          * Secure-37 - Junkyard / Landfill
+          * Secure-45 - Military Base
+          * Secure-49 - Nuclear Power Plant
+          * Secure-51 - Oil / Gas
+          * Secure-58 - Power Plant
+          * Secure-59 - Prison / Detention Center
+          * Secure-63 - Rail Yard
+          * Secure-74 - Solar Power Farm
+          * Secure-82 - Utility Site
+          * Secure-84 - Waste Transfer Station
+          * Secure-85 - Water Treatment Plant
+          * Secure-86 - Wind Power Farm
+          * Storage
+          * Storage-18 - Container Freight Station
+          * Storage-71 - Self Storage Warehouse
+          * Tradeshow
+          * Tradeshow-16 - Conference Center
+          * Tradeshow-20 - Convention Center
+          </pre>

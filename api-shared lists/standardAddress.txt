@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+  title: standardAddress
+  description: |
+    object standardizing address information
+  version: "1.0.0"
+  creation date: 2026-07-20
+  update date:
+  contact: 
+    name: NMFTA Digital LTL Council
+    email: support@nmfta.org
+  license:
+    name: NMFTA License
+    url: https://github.com/dsdcapis/less-than-truckload/blob/main/LICENSE.md
+
+    StandardAddress:
+      type: object
+      required:
+        - addressName
+        - addressLine1
+        - city
+        - state
+        - postalCode
+        - country
+      optional:
+        - addressLine2
+        - accountNumber
+      properties:
+        addressName:
+          type: string
+          description: The business or personal name for the address.
+        addressLine1:
+          type: string
+          description: The primary address line for the address.
+        city:
+          type: string
+          description: The city for the address.
+        state:
+          type: string
+          description: the two-letter state/province code for the address.
+        postalCode:
+          type: string
+          description: The 5-digit + 4 or 5-digit for the United States, 5-digit for Mexico, or 6-character for Canada, postal code for the location.
+            Valid formats
+             * 12345-1234 (5 digits + 4 - USA)
+             * 12345 (5 digits - USA/MEX)
+             * A1A1A1 (6 characters - CAN)
+        country:
+          type: string
+          description: The country for the given address.
+          enum: [USA, CAN, MEX]
+        addressLine2:
+          type: [string, 'null']
+          description: The secondary address line for the address.
+        accountNumber:
+          type: [string, 'null']
+          description: The account number associated with the address.

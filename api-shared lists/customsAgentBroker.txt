@@ -1,0 +1,93 @@
+openapi: 3.1.0
+info:
+  title: customsAgentBroker
+  description: |
+    object containing information about the identify of a customs broker
+  version: "1.0.0"
+  creation date: 2026-07-20
+  update date:
+  contact: 
+    name: NMFTA Digital LTL Council
+    email: support@nmfta.org
+  license:
+    name: NMFTA License
+    url: https://github.com/dsdcapis/less-than-truckload/blob/main/LICENSE.md
+
+    CustomsAgentBroker:
+      type: object
+      properties:
+        type:
+          type: string
+          description: |
+            Used to identify a customs broker that is involved in a cross-border freight move.
+            Valid Values: Import or Export
+              * Import: customs broker handling the destination-side of the cross-border freight move
+              * Export: customs broker handling the origin-side of the cross-border freight move
+          enum: [Import, Export]
+        name:
+          type: string
+          description: Company name associated with the customsBroker location.
+          examples: ["Closets Closets Closets"]
+        address1:
+          type: string
+          description: Primary Address line for the customsBroker location
+          examples: ["12 S. Closets Place"]
+        address2:
+          type: string
+          description: Secondary Address line for the customsBroker location
+          examples: ["ste 3"]
+        city:
+          type: string
+          description: City Name for the customsBroker location
+          examples: ["Los Angeles"]
+        stateProvince:
+          type: string
+          description: |
+            Two letter state/province code for the customsBroker location.
+          examples: [CA]
+        postalCode:
+          type: string
+          examples: ['90001']
+          description: >
+            The 5-digit + 4 or 5-digit for the United States, 5-digit for Mexico, or 6-character for Canada, postal code for the location.
+            Valid formats
+             * 12345-1234 (5 digits + 4 - USA)
+             * 12345 (5 digits - USA/MEX)
+             * A1A1A1 (6 characters - CAN)
+        country:
+          type: string
+          examples: ["USA"]
+          description: |
+            Three letter country code for the customsBroker location.
+        contact:
+          type: object
+          description: |
+            Object containing contact details for the customsBroker.
+          required:
+            - phone
+          properties:
+            phone:
+              type: string
+              examples: ['5552226666']
+              description: >
+                Ten digit phone number, without country code and/or dashes,
+                for the customsBroker location's contact person.
+
+
+                Valid Formats:
+                * ########## (10 digits - Area code + phone)
+            phoneExt:
+              type: string
+              examples: ['99']
+              description: >-
+                Phone extension for the customsBroker location's contact
+                person.
+            name:
+              type: string
+              examples: ['Jay Pritchett']
+              description: Name of the customsBroker location's contact person.
+            email:
+              type: string
+              examples: [jpritchett@closets.com]
+              description: >-
+                Email address of the customsBroker location's contact person.

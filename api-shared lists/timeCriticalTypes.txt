@@ -1,0 +1,24 @@
+openapi: 3.1.0
+info:
+  title: timeCriticalTypes
+  description: |
+    list of type critical delivery window types
+  version: "1.0.0"
+  creation date: 2026-07-20
+  update date:
+  contact: 
+    name: NMFTA Digital LTL Council
+    email: support@nmfta.org
+  license:
+    name: NMFTA License
+    url: https://github.com/dsdcapis/less-than-truckload/blob/main/LICENSE.md
+
+    TimeCriticalTypes:
+      type: string
+      description: |
+        Valid Values:
+          * Deliver On Date Freight can only be delivered on the specified start date.
+          * Deliver On or After Date Freight can only be delivered on or after the specified start date.
+          * Deliver By Date Freight can only be delivered up to, and including, the specified start date.
+          * Delivery Window Freight can only be delivered between the specified start and end dates.
+      enum: [Deliver On Date, Deliver On or After Date, Deliver By Date, Delivery Window]

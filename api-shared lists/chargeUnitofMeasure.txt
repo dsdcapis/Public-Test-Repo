@@ -1,0 +1,24 @@
+    chargeUnitOfMeasure:
+      type: string
+      description: |
+        Valid values:
+          <pre>
+          * TAR - Tarriff Pricing 
+          * DYN - Dynamic Rates 
+          * COM - Commodity Rates 
+          * CAR - Carpet Rates 
+          * CWT - CWT
+          * PPI - Per Piece
+          * PPT - Per Pallet
+          * LIN - Linear Foot 
+          * CUB - Cubic Capacity 
+          * DEN - Density Rate 
+          * SPOT - Spot Quote
+          * PROJ - Project Roll Out Rates
+          * RPM - Rate per Mile 
+          * FLAT - Flat Rate 
+          * RPH - Rate per Hour
+          * RPD - Rate per Day
+          * EA - Each
+          * PCT - Percent
+          </pre>

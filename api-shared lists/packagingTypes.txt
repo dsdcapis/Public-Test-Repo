@@ -1,0 +1,84 @@
+openapi: 3.1.0
+info:
+  title: packagingTypes
+  description: |
+    list of valid packaging types
+  version: "1.0.0"
+  creation date: 2026-07-20
+  update date:
+  contact: 
+    name: NMFTA Digital LTL Council
+    email: support@nmfta.org
+  license:
+    name: NMFTA License
+    url: https://github.com/dsdcapis/less-than-truckload/blob/main/LICENSE.md
+    PackagingTypes:
+      type: string
+      description: |
+
+        Valid values:
+          <pre>
+          * BAG - Bag
+          * BAL - Bale
+          * BBL - Barrel
+          * BSK - Basket
+          * BIN - Bin
+          * BOX - Box
+          * BXT - Bucket
+          * BCH - Bunch
+          * BDL - Bundle
+          * CAB - Cabinet
+          * CAG - Cage
+          * CAN - Can
+          * CBY - Carboy
+          * CAR - Carrier
+          * CTN - Carton
+          * CAS - Case
+          * CSK - Cask
+          * CHS - Chest
+          * COL - Coil
+          * CNT - Container
+          * COR - Cores
+          * CRT - Crate
+          * CYL - Cylinder
+          * DRM - Drum
+          * DBK - Dry Bulk
+          * ENV - Envelope
+          * FIR - Firkin
+          * GLD - Gaylord
+          * HPR - Hamper
+          * HGH - Hogshead
+          * HRB - On Hanger or Rack in Boxes
+          * INT - Intermediate Bulk Container
+          * JAR - Jar
+          * JCN - Jerrycan
+          * KEG - Keg
+          * KIT - Kit
+          * LIF - Lifts
+          * LBK - Liquid Bulk
+          * LSE - Loose
+          * MXD - Mixed
+          * OTH - Other
+          * PKG - Package
+          * PCK - Packed
+          * PAL - Pail
+          * PAT - Pallet
+          * PCS - Piece
+          * PLN - Pipe Line
+          * RCK - Rack
+          * REL - Reel
+          * ROL - Roll
+          * SKD - Skid
+          * SLP - Slip Sheet
+          * SPL - Spool
+          * TNK - Tank
+          * TBN - Tote
+          * TRY - Tray
+          * TRU - Truckload
+          * TRK - Trunk
+          * TUB - Tub
+          * TBE - Tube
+          * UNT - Unit
+          * VPK - Van Pack
+          * WRP - Wrapped
+          </pre>
