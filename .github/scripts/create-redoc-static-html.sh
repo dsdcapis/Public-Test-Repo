@@ -21,6 +21,11 @@ findAllFiles() {
         rel_file="${file#$currentFolder/}"
         resultRef["$rel_file"]="xlsx"
     done < <(find "$currentFolder" -type f -name "*.xlsx" -print0 | sort -z)
+
+    while IFS= read -r -d '' file; do
+        rel_file="${file#$currentFolder/}"
+        resultRef["$rel_file"]="txt"
+    done < <(find "$currentFolder" -type f -name "*.txt" -print0 | sort -z)
 }
 
 loadStaticHtmlToFolder() {
@@ -163,6 +168,8 @@ generateHighLevelIndex() {
         .pdf-link::before { content: '📄 '; margin-right: 4px; }
         .xlsx-link { color: #5cb85c; }
         .xlsx-link::before { content: '📊 '; margin-right: 4px; }
+        .txt-link { color: #f0ad4e; }
+        .txt-link::before { content: '📝 '; margin-right: 4px; }
         .openapi-link { color: #5bc0de; }
         .openapi-link::before { content: '📋 '; margin-right: 4px; }
 
@@ -359,10 +366,10 @@ ENDHEAD
     IFS=$'\n' sortedPaths=($(sort <<< "${sortedPaths[*]}"))
     unset IFS
 
-    # Copy PDF and XLSX files
+    # Copy PDF, XLSX, and TXT files
     for path in "${sortedPaths[@]}"; do
         local fileType="${allFiles[$path]}"
-        if [[ "$fileType" == "pdf" || "$fileType" == "xlsx" ]]; then
+        if [[ "$fileType" == "pdf" || "$fileType" == "xlsx" || "$fileType" == "txt" ]]; then
             local fileDir=$(dirname "$path")
             mkdir -p "$publicFolder/$fileDir"
             cp "$currentFolder/$path" "$publicFolder/$path"
@@ -458,6 +465,11 @@ ENDHEAD
                 IFS='/' read -ra parts <<< "$item"
                 local fileName="${parts[-1]}"
                 echo "${indent}<li><input type=\"checkbox\" class=\"download-checkbox\" aria-label=\"Select $fileName for download\" data-file=\"$item\" data-name=\"$item\" onchange=\"updateSelection()\"><a class=\"file-link xlsx-link\" href=\"$item\" onclick=\"handleDownloadClick(event); return false;\">$fileName</a></li>" >> "$indexFile"
+
+            elif [[ "$nodeType" == "txt" ]]; then
+                IFS='/' read -ra parts <<< "$item"
+                local fileName="${parts[-1]}"
+                echo "${indent}<li><input type=\"checkbox\" class=\"download-checkbox\" aria-label=\"Select $fileName for download\" data-file=\"$item\" data-name=\"$item\" onchange=\"updateSelection()\"><a class=\"file-link txt-link\" href=\"$item\" onclick=\"handleDownloadClick(event); return false;\">$fileName</a></li>" >> "$indexFile"
             fi
         done
     }
