@@ -1,0 +1,59 @@
+openapi: 3.1.0
+info:
+  title: terminalInfo
+  description: |
+    object containing information about a carrier terminal
+  version: "1.0.0"
+  creation date: 2026-07-20
+  update date:
+  contact: 
+    name: NMFTA Digital LTL Council
+    email: support@nmfta.org
+  license:
+    name: NMFTA License
+    url: https://github.com/dsdcapis/less-than-truckload/blob/main/LICENSE.md
+
+    TerminalInfo:
+      type: [object, 'null']
+      required:
+        - TerminalID
+      properties:
+        TerminalID:
+          type: [string, 'null']
+          description: The Carrier-specific terminal ID.
+        AddressLine1:
+          type: [string, 'null']
+          description: The primary address line for the terminal's address.
+        AddressLine2:
+          type: [string, 'null']
+          description: The secondary address line for the terminal's address.
+        City: 
+          type: [string, 'null']
+          description: The city for the terminal's address.
+        State:
+          type: [string, 'null']
+          description: The two-letter state code for the terminal's address.
+        PostalCode:
+          type: [string, 'null']
+          description: The 5-digit + 4 or 5-digit for the United States, 5-digit for Mexico, or 6-character for Canada, postal code for the location.
+            Valid formats
+             * 12345-1234 (5 digits + 4 - USA)
+             * 12345 (5 digits - USA/MEX)
+             * A1A1A1 (6 characters - CAN)
+        Country:
+          type: [string, 'null']
+          enum: [CAN, MEX, USA]
+          description: The country (CAN, MEX, USA) for the terminal's address.
+        ContactName: 
+          type: [string, 'null']
+          description: The contact name for the terminal.
+        PhoneNumber:
+          type: [string, 'null']
+          description: The phone number for the terminal's contact.
+        EmailAddress:
+          type: [string, 'null']
+          description: The email address for the terminal's contact.
+        TerminalStatus:
+          type: [string, 'null']
+          enum: [Arrived, Unloaded, Loaded, Departed]
+          description: Indicates the status (Arrived, Unloaded, Loaded, Departed) at the terminal.

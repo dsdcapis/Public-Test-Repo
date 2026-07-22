@@ -1,0 +1,61 @@
+openapi: 3.1.0
+info:
+  title: delayReasonCodes
+  description: |
+    list of valid delay reason codes
+  version: "1.0.0"
+  creation date: 2026-07-20
+  update date:
+  contact: 
+    name: NMFTA Digital LTL Council
+    email: support@nmfta.org
+  license:
+    name: NMFTA License
+    url: https://github.com/dsdcapis/less-than-truckload/blob/main/LICENSE.md
+
+    DelayReasonCodes:
+      type: string
+      description: |
+
+        Valid Values:
+          <pre>
+          * 100-1   - Success - Delivered Full and Complete
+          * 100-2   - Success - Delivered Full and Complete within Appointment
+          * 200-1   - Delivery made with exception - Delivered with superficial damage
+          * 200-2   - Delivery made with exception - Delivered with noted product damage
+          * 200-3   - Delivery made with exception - Delivered Short
+          * 200-4   - Delivery made with exception - Waiting on Inspection
+          * 310-1   - Carrier not able to service - Area not serviced today
+          * 310-2   - Carrier not able to service - Equipment Breakdown
+          * 310-3   - Carrier not able to service - Customer request to reschedule
+          * 310-4   - Carrier not able to service - Dispatch error
+          * 310-5   - Carrier not able to service - Driver cut off
+          * 310-6   - Carrier not able to service - End of day
+          * 310-7   - Carrier not able to service - Delivery terminal capacity constraint
+          * 310-8   - Carrier not able to service - Accident
+          * 310-9   - Carrier not able to service - Bad Address Data
+          * 310-10  - Carrier not able to service - Hold For Payment
+          * 320-1   - Appointment Issue - Need Contact Information
+          * 320-2   - Appointment Issue - Need Appointment Number
+          * 320-3   - Appointment Issue - Pending consolidation to full trailer
+          * 320-4   - Appointment Issue - Left message requesting appointment
+          * 390-1   - Weather - Inclement weather
+          * 390-2   - Civil Event - Civil Event
+          * 330-1   - Consignee Closed - Consignee closed - reschedule
+          * 330-2   - Consignee Closed - Consignee closed due to holiday (dispatcher)
+          * 330-3   - Consignee Closed - Consignee closed due to holiday (driver)
+          * 450-1   - Duplicate - Duplicate delivery (dispatcher)
+          * 450-2   - Duplicate - Duplicate delivery (driver)
+          * 400-1   - Delivery request cancelled - Consignee closed - cancel
+          * 400-2   - Delivery request cancelled - Customer request to hold at terminal
+          * 400-3   - Delivery request cancelled - Customer request to cancel
+          * 410-1   - Carrier not able to service - Embargo/capacity constraint
+          * 410-2   - Carrier not able to service - Equipment not available
+          * 440-1   - Prohibited Items - Prohibited or restricted freight (dispatcher)
+          * 440-2   - Prohibited Items - Prohibited or restricted freight (driver)
+          * 430-1   - Consignee Closed - Consignee closed due to strike (dispatcher)
+          * 430-2   - Consignee Closed - Consignee closed due to strike (driver)
+          * 460-1   - Unable to Access Consignee - Unable to access delivery location
+          * 460-2   - Unable to Access Consignee - Unable to contact Consignee for appointment
+          * 460-3   - Unable to Access Consignee - Refused Delivery
+          </pre>

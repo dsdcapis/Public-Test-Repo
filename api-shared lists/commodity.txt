@@ -1,0 +1,62 @@
+openapi: 3.1.0
+info:
+  title: commodity
+  description: |
+    object containing detailed information about commodities
+  version: "1.0.0"
+  creation date: 2026-07-20
+  update date:
+  contact: 
+    name: NMFTA Digital LTL Council
+    email: support@nmfta.org
+  license:
+    name: NMFTA License
+    url: https://github.com/dsdcapis/less-than-truckload/blob/main/LICENSE.md
+
+    Commodity:
+      type: object
+      properties:
+        description: 
+          type: [string, 'null']
+          description: The description of the commodity.
+        weight: 
+          type: [number, 'null']
+          description: The weight of the commodity.
+        weightUnit: 
+          type: [string, 'null']
+          description: The unit of weight of the commodity in kg or lbs. The default is lbs.
+          enum: [kg, lbs]
+          examples: [lbs]
+        pieces: 
+          type: [number, 'null']
+          description: The number of pieces of the commodity.
+        packagingType: 
+          type: [string, 'null']
+          description: |
+            Valid Values: See the PackagingTypes schema at the bottom of this page.
+        classification:
+          type: [number, 'null']
+          description: The class of the commodity described. Classes included 50, 55, 60, 65, 70, 77.5, 85, 92.5, 100, 110, 125, 150, 175, 200, 250, 300, 400, 500, Not Required. 
+        nmfc:
+          type: [string, 'null']
+          description: The NMFC code of the commodity.
+        nmfcSub:
+          type: [string, 'null']
+          description: The NMFC sub code of the commodity.
+        hazardous:
+          type: boolean
+          default: false
+          description: Indicates whether the commodity is a hazardous material. Values are true or false. The default is false.
+        hazardousDescription:
+          type: [string, 'null']
+          description: The description of the hazardous material commodity.
+        hazmatContactName:
+          type: [string, 'null']
+          description: The name of who should be contacted if there is a hazardous materials-related issue with this commodity.
+        hazmatContactPhoneNumber:
+          type: [string, 'null']
+          description: The phone number for the contact person for hazardous materials-related issues with this commodity.
+        nestedOrStacked:
+          type: [string, 'null']
+          enum: [Nested, Stacked]
+          description: Indicates whether the commodity is nested or stacked.

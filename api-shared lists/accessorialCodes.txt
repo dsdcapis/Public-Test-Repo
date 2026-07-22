@@ -1,0 +1,50 @@
+openapi: 3.1.0
+info:
+  title: accessorialCodes
+  description: |
+    list of valid accessorial codes 
+  version: "1.0.0"
+  creation date: 2026-07-20
+  update date:
+  contact: 
+    name: NMFTA Digital LTL Council
+    email: support@nmfta.org
+  license:
+    name: NMFTA License
+    url: https://github.com/dsdcapis/less-than-truckload/blob/main/LICENSE.md
+
+    AccessorialCodes:
+      type: array
+      description: |
+
+        Valid values:
+          <pre>
+          * APTD     - Appointment required at delivery
+          * APTP     - Appointment required at pickup
+          * COD      - Collect on delivery
+          * EXPD     - Expedited Service
+          * FVC      - Full value coverage
+          * GTD_AM   - Guaranteed service - by Morning
+          * GTD_NOON - Guaranteed service - by Noon
+          * GTD_PM   - Guaranteed service - by End of Day
+          * HAZ      - Hazardous material
+          * IDL      - Inside delivery
+          * INBD     - In bond shipment
+          * IPU      - Inside pickup
+          * LFTD     - Lift gate required at delivery
+          * LFTP     - Lift gate required at pickup
+          * LTDAD    - Limited access delivery
+          * LTDAP    - Limited access pickup
+          * MARK     - Marked or tagged
+          * MNC      - Must notify consignee
+          * OVR      - Over dimension/excessive length
+          * PPD      - Perishables (food)
+          * PSC      - Protective from cold
+          * PSH      - Protective from heat
+          * PSN      - Poisonous material
+          * REP      - Residential pickup
+          * RES      - Residential delivery
+          * SRT      - Sort and segregate
+          * SS       - Single Shipment
+          * TCS      - Time Critical Service
+          </pre>

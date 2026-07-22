@@ -1,0 +1,44 @@
+    DisputeReasonCodes:
+      type: string
+      description: |
+
+        Valid values:
+          <pre>
+          * Characteristics - Missing  Documentation
+          * Characteristics - Incomplete commodity description 
+          * Characteristics - Reclass
+          * Characteristics - NMFC Item# and Sub
+          * Characteristics - Reweigh of the freight
+          * Characteristics - Reconsignment of the freight
+          * Characteristics - Dispute within Special instructions
+          * Characteristics - Change on Pieces
+          * RATE - Accessorial Charge Amount is Incorrect
+          * RATE - Accessorial Missing Documentation
+          * RATE - Accessorial Charge Not Applicable
+          * RATE - Incorrect Discount Applied
+          * RATE - Incorrect Tariff
+          * RATE - Incorrect Rate Base 
+          * RATE - Incorrect Quote 
+          * RATE - Incorrect Minimum 
+          * RATE - Incorrect Fuel 
+          * RATE - Incorrect Volume Quote Applied
+          * RATE - Detention 
+          * Characteristics - Consignee Name change
+          * Characteristics - Consignee address change
+          * Characteristics - Shipper Name change
+          * Characteristics - Shipper Address change
+          * BILL-TO - Correct bill-to name
+          * BILL-TO - Correct bill-to address
+          * BILL-TO - Bill-to party is incorrect, rebill to correct party
+          * BILL-TO - Change terms (prepaid to collect or collect to prepaid)
+          * BILL-TO - Rebill to related account
+          * RATE - Lumper
+          * RATE - Unloading Allowance
+          * RATE - In Bond Charges
+          * RATE - Vehicle Order Not Used
+          * RATE - Redelivery
+          * PERF - Time Critical Service Failure
+          * Data - Update PO #
+          * Data - Update Ref #
+          * Data - Update Load ID
+          </pre>

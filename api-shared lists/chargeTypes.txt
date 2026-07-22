@@ -1,0 +1,64 @@
+    chargeTypes:
+      type: string
+      description: |
+        Valid values:
+          <pre>
+          * Base - Base Rate Charges
+          * Disc - Discount 
+          * Fuel - Fuel Surcharge
+          * RCL - Reclassification of the freight
+          * RWE - Reweigh of the freight
+          * RCC - Reconsignment of the freight
+          * DET - Detention of the freight
+          * MNC - Must notify consignee
+          * APTD - Appointment required at delivery
+          * APTP - Appointment required at pickup
+          * REP - Residential pickup
+          * RES - Residential delivery
+          * LFTD - Lift gate required at delivery
+          * LFTP - Lift gate required at pickup
+          * CBL - Consignee Name change
+          * CBL - Consignee address change
+          * CBL - Shipper Name change
+          * CBL - Shipper Address change
+          * CBL - bill to name change
+          * CBL - bill address
+          * ACTCHG - Account change to Shipper, Consignee or Biller or Terms
+          * LTDAD - Limited access delivery
+          * LTDAP - Limited access pickup
+          * STG - Storage Fee
+          * LUM - Lumper Fee
+          * UNL - Unloading Allowance
+          * INBC - In Bond Shipment Charges
+          * FINL - Invoice has been processed; end of PFC for ths shipment
+          * OTHR - Other Event
+          * CBC - Cubic Capacity Reached
+          * OVR - Over dimension/excessive length
+          * DMIN - Density Minimum Charge
+          * CMIN - Cubic Minimum Charge
+          * VOR - Vehicle Order Not Used
+          * RDL - Redelivery
+          * SEC - Security Fee
+          * HIPU - High Cost  PU
+          * HIDL - High Cost DL
+          * CCS - California Compliance Surcharge
+          * COD - Collect on delivery
+          * EXPD - Expedited Service
+          * FVC - Full value coverage
+          * GTD_AM - Guaranteed service - by Morning
+          * GTD_NOON - Guaranteed service - by Noon
+          * GTD_PM - Guaranteed service - by End of Day
+          * HAZ - Hazardous material
+          * IDL - Inside delivery
+          * IPU - Inside pickup
+          * INBD - In bond shipment
+          * MARK - Marked or tagged
+          * PPD - Perishables (food)
+          * PSC - Protective from cold
+          * PSH - Protective from heat
+          * PSN - Poisonous material
+          * SRT - Sort and segregate
+          * SS - Single Shipment
+          * TCS - Time Critical Service
+          * STO - Storage
+          </pre>

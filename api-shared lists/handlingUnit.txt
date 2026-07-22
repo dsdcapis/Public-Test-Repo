@@ -1,0 +1,61 @@
+openapi: 3.1.0
+info:
+  title: handlingUnit
+  description: |
+    object containing information about individual handling units
+  version: "1.0.0"
+  creation date: 2026-07-20
+  update date:
+  contact: 
+    name: NMFTA Digital LTL Council
+    email: support@nmfta.org
+  license:
+    name: NMFTA License
+    url: https://github.com/dsdcapis/less-than-truckload/blob/main/LICENSE.md
+
+    HandlingUnit:
+      type: object
+      description: Handling unit specific shipment attribute.
+      properties:
+        index:
+          type: [integer, 'null']
+          description: The index of the handling unit
+        count: 
+          type: [number, 'null']
+          description: The number of handling units containing the described freight.
+        type:
+          type: [string, 'null']
+          description: | 
+            Type of handling unit.
+
+            Valid values: See the HandlingUnitTypes schema at the bottom of the page.
+          examples: [BAG]
+        tareWeight: 
+          type: [number, 'null']
+          description: Weight of packaging materials and handling units separate from commodity weight.
+        weight:
+          type: [number, 'null']
+          description: The gross weight.
+        weightUnit:
+          type: [string, 'null']
+          description: The unit of weight in kg or lbs. The default is lbs.
+          enum: [kg, lbs]
+          examples: [lbs]
+        length: 
+          type: number
+          description: The length of the handling units being described.
+        width: 
+          type: number
+          description: The width of the handling units being described.
+        height: 
+          type: number
+          description: The height of the handling units being described.
+        dimensionsUnit:
+          type: string
+          enum: [In, Ft, M, CM]
+          description: Indicates the length unit of measure. Values are In (inches), Ft (feet), M (meters), or CM (centimeters).
+          examples: [In, Ft, M, CM]
+        stackable:
+          type: boolean
+          default: false
+          description: Indicates whether the freight is stackable.  Values are true or false. The default is false.

@@ -1,0 +1,46 @@
+openapi: 3.1.0
+info:
+  title: referenceNumbers
+  description: |
+    object containing different reference number types
+  version: "1.0.0"
+  creation date: 2026-07-20
+  update date:
+  contact: 
+    name: NMFTA Digital LTL Council
+    email: support@nmfta.org
+  license:
+    name: NMFTA License
+    url: https://github.com/dsdcapis/less-than-truckload/blob/main/LICENSE.md
+
+    ReferenceNumbers:
+      type: object
+        - bolNumber
+        - QuoteID
+        - ShipmentID
+        - MasterBOL
+        - poNumber
+        - AdditionalReferences
+        - trailerNumber
+      properties:
+        bolNumber:
+          type: [string, 'null']
+          description: The eBOL or BOL number for the shipment.
+        QuoteID:
+          type: [string, 'null']
+          description: Quote ID provided by the carrier for the shipment.
+        ShipmentID:
+          type: [string, 'null']
+          description: Shipper-assigned reference number for the individual shipment (load \#, shipment \#, etc. This can also be the pro.)
+        MasterBOL:
+          type: [string, 'null']
+          description: Shipper reference number for Pooled services.
+        poNumber:
+          type: [string, 'null']
+          description: Purchase Order Number provided by Consignee. There can be multiple Purchase Order Numbers associated with a single shipment.
+        AdditionalReferences:
+          type: [string, 'null']
+          description: Cross reference PRO number provided by eBOL API.
+        trailerNumber:
+          type: [string, 'null']
+          description: Trailer number currently transporting shipment.

@@ -1,0 +1,31 @@
+openapi: 3.1.0
+info:
+  title: timeCriticalInfo
+  description: |
+    object containing information about time critical deliveries
+  version: "1.0.0"
+  creation date: 2026-07-20
+  update date:
+  contact: 
+    name: NMFTA Digital LTL Council
+    email: support@nmfta.org
+  license:
+    name: NMFTA License
+    url: https://github.com/dsdcapis/less-than-truckload/blob/main/LICENSE.md
+
+    TimeCriticalInfo:
+      type: object
+      description: Time critical info.
+      properties: 
+        date:
+          type: [string, 'null']
+          format: date-time
+          description: TC Date may or may not be included.
+        windowStart:
+          type: [string, 'null']
+          format: time
+          description: TC Start Time of Window.
+        windowEnd: 
+          type: [string, 'null']
+          format: time
+          description: TC End Time of Window.
